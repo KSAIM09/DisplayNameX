@@ -12,6 +12,7 @@ function App(){
       setFullName(`${firstName} ${lastName}`);
     }
   };
+  const isValidInput = (input) => /^[\s\S]*$/.test(input);
 
   return (
     <div className='App'>
@@ -22,7 +23,8 @@ function App(){
           <input
             type='text'
             value={firstName}
-            onChange={(e)=> setFirstName(e.target.value)}
+            onChange={(e)=> isValidInput(e.target.value) && setFirstName(e.target.value)}
+            required
           />
         </label>
         <br />
@@ -31,11 +33,12 @@ function App(){
           <input
             type='text'
             value={lastName}
-            onChange={(e)=> setLastName(e.target.value)} 
+            onChange={(e)=> isValidInput(e.target.value) && setLastName(e.target.value)}
+            required
           />
         </lable>
         <br />
-        <button type='submit' disabled={!firstName || !lastName}>
+        <button type='submit'>
           Submit
         </button>
       </form>
